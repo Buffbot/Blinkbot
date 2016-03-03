@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'blinkbot',
     environment: environment,
+    podModulePrefix: 'blinkbot/pods',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
