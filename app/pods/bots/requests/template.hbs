@@ -1,0 +1,14 @@
+<div class="requestsHeader">
+  <div class="requestsHeader-title">
+    <span class="requestsHeader-upcoming">{{active_requests.length}}</span> Upcoming Requests
+  </div>
+  <div class="requests-example">
+    !play Artist - Title
+  </div>
+</div>
+
+<div class="requests">
+  {{#each requests as |request|}}
+    {{bots/requests/request-item model=request}}
+  {{/each}}
+</div>

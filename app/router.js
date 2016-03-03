@@ -6,6 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('bots', function() {
+    this.route('requests');
+  });
 });
 
 export default Router;

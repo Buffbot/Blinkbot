@@ -1,0 +1,23 @@
+.requests-request {
+  background: #222;
+  color: #fff;
+  display: flex;
+  height: 0;
+  justify-content: space-between;
+  opacity: 0;
+  padding: 10px;
+  transition: .2s all;
+}
+
+.requests-request.is-active {
+  height: 50px;
+  opacity: 1;
+}
+
+.requests-request.is-current {
+  background: #444;
+}
+
+.requests-requestTitle {
+  text-overflow: ellipsis;
+}
