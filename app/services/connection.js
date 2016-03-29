@@ -1,13 +1,14 @@
 import Ember from 'ember';
+import ENV from "blinkbot/config/environment";
 
 export default Ember.Service.extend({
   common: Ember.inject.service('common'),
 
   config: {
-    username: "ashesofowls",
-    displayName: "AshesOfOwls",
-    channel: "#ashesofowls",
-    oauth: "insert password here"
+    username: ENV.USERNAME,
+    displayName: ENV.DISPLAY_NAME,
+    channel: ENV.CHANNEL,
+    oauth: ENV.OAUTH
   },
 
   client: null,
