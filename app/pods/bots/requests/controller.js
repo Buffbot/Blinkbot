@@ -9,4 +9,4 @@ export default Ember.Controller.extend({
   listenForRequests: Ember.on('init', function() {
     this.get('requester').connect();
   })
-})
+});

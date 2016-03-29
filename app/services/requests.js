@@ -140,7 +140,7 @@ export default Ember.Service.extend({
     var previous_request = this.getUsersRequest(request.user);
 
     if(previous_request) {
-      previous_request.set('request', request.request)
+      previous_request.set('request', request.request);
     }
   },
 
@@ -161,8 +161,8 @@ export default Ember.Service.extend({
       var request_item = `${n+1}: ${request.get('request')}`;
       requests_batch.push(request_item);
 
-      if(n > 0 && n % 5 == 4) {
-        var message = requests_batch.join(" || ");
+      if(n > 0 && n % 5 === 4) {
+        let message = requests_batch.join(" || ");
         self.get('common').say(message);
 
         requests_batch = [];
@@ -214,21 +214,23 @@ export default Ember.Service.extend({
 
   commandMyRequest(user) {
     var request = this.getUsersRequest(user);
+    var message = '';
+    var request_user = request.user;
 
     if(request) {
       var index = this.get('active_requests').indexOf(request) + 1;
 
       if(index > 0) {
-        var message = `your request is currently at position ${index}`;
+        message = `your request is currently at position ${index}`;
       } else if(request.get('isCurrent')) {
-        var message = `your request is currently being played!`;
+        message = `your request is currently being played!`;
       }
-
-      this.get('common').mentionSay(request.user, message);
     } else {
-      var message = `you do not have a request.`;
-      this.get('common').mentionSay(user, message);
+      message = `you do not have a request.`;
+      request_user = user;
     }
+
+    this.get('common').mentionSay(request_user, message);
   },
 
   commandCancel(user) {
@@ -282,7 +284,7 @@ export default Ember.Service.extend({
     var user = this.get('store').createRecord('twitch-user', {
       username: data.user["username"],
       display: data.user["display-name"]
-    })
+    });
 
     var request = Ember.Object.create({
       user: user,
@@ -302,13 +304,13 @@ export default Ember.Service.extend({
         "display-name": this.get('connection.config.displayName')
       },
       request: "My Choice"
-    }
+    };
 
     this.addRequest(request);
   },
 
-  userRequestAllowed(user) {
-    true
+  userRequestAllowed() {
+    return true;
   },
 
   getUsersRequest(user) {

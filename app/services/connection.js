@@ -36,7 +36,7 @@ export default Ember.Service.extend({
       self.get('common').updateModList();
 
       promise.resolve();
-    })
+    });
 
     return promise;
   }

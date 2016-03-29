@@ -11,7 +11,7 @@ export default Ember.Service.extend({
 
   mentionSay(user, message) {
     var display_name = user['display-name'] || user.get('display');
-    var message = `@${display_name}, ${message}`;
+    message = `@${display_name}, ${message}`;
 
     this.say(message);
   },
