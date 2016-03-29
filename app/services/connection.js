@@ -18,7 +18,7 @@ export default Ember.Service.extend({
       channels: [this.get('config').channel],
       options: { debug: true },
       connection: {
-        cluster: "chat",
+        cluster: "aws",
         reconnect: true
       },
       identity: {
@@ -30,7 +30,7 @@ export default Ember.Service.extend({
     var client = new irc.client(client_options);
     var promise = new $.Deferred();
     this.set('client', client);
-
+    
     var self = this;
     client.connect().then(function() {
       self.get('common').updateModList();
