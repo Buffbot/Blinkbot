@@ -7,6 +7,6 @@ export default Ember.Controller.extend({
   active_requests: Ember.computed.alias('requester.active_requests'),
 
   listenForRequests: Ember.on('init', function() {
-    this.get('requester').connect();
+    this.get('requester').enable();
   })
 })

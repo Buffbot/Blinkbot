@@ -17,16 +17,7 @@ export default Ember.Service.extend({
 
   allowRequests: true,
 
-  connect() {
-    var promise = this.get('connection').connect();
-
-    var self = this;
-    promise.done(function() {
-      self.connected();
-    });
-  },
-
-  connected() {
+  enable() {
     this.set('all_requests', []);
     this.setupListeners();
   },

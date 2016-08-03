@@ -1,0 +1,30 @@
+<div class="index">
+  {{#if connected}}
+  You are connected!
+
+  {{link-to "Requests Bot" "bots.requests"}}
+  {{else}}
+
+  {{#if connecting}}
+  Connecting...
+  {{else}}
+  <div>
+  bot user:
+  {{input value=username}}
+  </div>
+
+  <div>
+  oauth:
+  {{input value=oauth}}
+  Visit <a href="http://www.twitchapps.com/tmi/" target="_blank">oauth generator</a>
+  </div>
+
+  <div>
+  channel:
+  {{input value=channel}}
+  </div>
+
+  <a href="#" {{action "connect"}}>Connect</a>
+  {{/if}}
+  {{/if}}
+</div>

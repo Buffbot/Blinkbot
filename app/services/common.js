@@ -5,7 +5,7 @@ export default Ember.Service.extend({
   modsList: null,
 
   say(message) {
-    var channel = this.get('connection.config.channel');
+    var channel = this.get('connection.channel');
     this.get('connection.client').say(channel, message);
   },
 
@@ -17,12 +17,13 @@ export default Ember.Service.extend({
   },
 
   updateModList() {
-    var current_user = this.get('connection.config.username');
-    var current_channel = this.get('connection.config.channel');
+    var current_user = this.get('connection.username');
+    var current_channel = this.get('connection.channel_name');
     var modsList = [current_user];
 
     var self = this;
-    this.get('connection').client.mods(current_channel).then(function(data) {
+
+    this.get('connection.client').mods(current_channel).then(function(data) {
       modsList = modsList.concat(data);
       self.set('modsList', modsList);
     });
