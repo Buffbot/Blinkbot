@@ -5,7 +5,7 @@ export default Ember.Service.extend({
   modsList: null,
 
   say(message) {
-    var channel = this.get('connection.channel');
+    var channel = this.get('connection.channel_name');
     this.get('connection.client').say(channel, message);
   },
 

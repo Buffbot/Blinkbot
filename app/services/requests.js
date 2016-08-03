@@ -18,8 +18,14 @@ export default Ember.Service.extend({
   allowRequests: true,
 
   enable() {
-    this.set('all_requests', []);
+    this.initialDataSetup();
     this.setupListeners();
+  },
+
+  initialDataSetup() {
+    this.set('all_requests', []);
+    this.addMyRequest();
+    this.commandNext();
   },
 
   setupListeners() {
@@ -267,6 +273,7 @@ export default Ember.Service.extend({
   finishRequest(request) {
     request.set('isActive', false);
     request.set('isCurrent', false);
+    request.set('isHidden', true);
   },
 
   addRequest(data) {
