@@ -296,8 +296,8 @@ export default Ember.Service.extend({
   addMyRequest() {
     var request = {
       user: {
-        username: this.get('connection.config.username'),
-        "display-name": this.get('connection.config.displayName')
+        username: this.get('connection.username'),
+        "display-name": this.get('connection.username')
       },
       request: "My Choice"
     }

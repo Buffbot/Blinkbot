@@ -3,10 +3,6 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   common: Ember.inject.service('common'),
 
-  config: {
-    displayName: ""
-  },
-
   username: "",
   channel_name: "#",
   oauth: "",
