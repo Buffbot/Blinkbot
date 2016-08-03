@@ -3,7 +3,10 @@
 # compiled output
 /dist
 /tmp
-/electron-builds
+
+/electron-builds/blinkbot-darwin-x64
+/electron-builds/blinkbot-linux-ia32
+/electron-builds/blinkbot-linux-x64
 
 # dependencies
 /node_modules
