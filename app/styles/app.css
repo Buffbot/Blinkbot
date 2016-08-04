@@ -2,6 +2,7 @@ body {
   background: #000;
   font-family: arial;
   color: #fff;
+  overflow: hidden;
 }
 
 .requestBot {
