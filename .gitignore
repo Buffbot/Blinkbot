@@ -4,8 +4,9 @@
 /dist
 /tmp
 
-# Security
-.env
+/electron-builds/blinkbot-darwin-x64
+/electron-builds/blinkbot-linux-ia32
+/electron-builds/blinkbot-linux-x64
 
 # dependencies
 /node_modules
@@ -18,3 +19,5 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
+
+.DS_Store

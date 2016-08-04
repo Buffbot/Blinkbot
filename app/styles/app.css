@@ -1,21 +1,97 @@
-.requests-request {
-  background: #222;
+body {
+  background: #000;
+  font-family: arial;
   color: #fff;
+  overflow: hidden;
+}
+
+.requestBot {
   display: flex;
-  height: 0;
-  justify-content: space-between;
-  opacity: 0;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
   padding: 10px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.requestsHeader {
+  background: #111;
+  box-sizing: border-box;
+  flex: 1 0 auto;
+  height: 80px;
+  font-size: 40px;
+  font-weight: 600;
+  padding: 20px;
+  box-shadow: 2px 0 4px #000;
+  position: relative;
+}
+
+.requestsHeader-example {
+  color: #32f42e;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.requests {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.requests-request {
+  box-sizing: border-box;
+  background: #222;
+  border-radius: 3px;
+  height: 90px;
+  padding: 20px;
+  margin-top: 15px;
   transition: .2s all;
+  font-size: 45px;
+  font-weight: 700;
+  display: flex;
+}
+
+.requests-request-title {
+  color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  float: left;
+  flex: 1 0 auto;
+}
+
+.requests-request-user {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #ccc;
+  float: right;
+  text-align: right;
+  font-family: monospace;
+  font-size: 30px;
+  flex: 0 1 auto;
+  max-width: 30%;
+  margin-top: 8px;
 }
 
 .requests-request.is-active {
-  height: 50px;
   opacity: 1;
 }
 
+.requests-request.is-hidden {
+  opacity: 0;
+  height: 0;
+  min-height: 0;
+  margin-top: 0;
+  padding: 0;
+}
+
 .requests-request.is-current {
-  background: #444;
+  background: #315A31;
 }
 
 .requests-requestTitle {

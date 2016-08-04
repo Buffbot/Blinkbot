@@ -1,0 +1,27 @@
+<div class="index">
+  {{#if connected}}
+  You are connected!
+
+  {{link-to "Requests Bot" "bots.requests"}}
+  {{else}}
+
+  {{#if connecting}}
+  Connecting...
+  {{else}}
+  <div>
+    User: {{input value=username}} (e.g., streambot)
+  </div>
+
+  <div>
+    <div>For OAUTH, you must be logged into the user above.</div>
+    OAUTH: {{input value=oauth}} Visit http://www.twitchapps.com/tmi/
+  </div>
+
+  <div>
+  Channel: {{input value=channel}} (e.g., #ashesofowls)
+  </div>
+
+  <a href="#" {{action "connect"}}>Connect</a>
+  {{/if}}
+  {{/if}}
+</div>

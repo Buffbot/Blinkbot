@@ -1,42 +1,41 @@
 import Ember from 'ember';
-import ENV from "blinkbot/config/environment";
 
 export default Ember.Service.extend({
   common: Ember.inject.service('common'),
 
-  config: {
-    username: ENV.USERNAME,
-    displayName: ENV.DISPLAY_NAME,
-    channel: ENV.CHANNEL,
-    oauth: ENV.OAUTH
-  },
+  username: "",
+  channel_name: "#",
+  oauth: "",
 
   client: null,
 
   connect() {
     var client_options = {
-      channels: [this.get('config').channel],
+      channels: [this.get('channel_name')],
       options: { debug: true },
       connection: {
-        cluster: "aws",
+        cluster: "chat",
         reconnect: true
       },
       identity: {
-        username: this.get('config').username,
-        password: this.get('config').oauth
+        username: this.get('username'),
+        password: this.get('oauth')
       }
     };
 
     var client = new irc.client(client_options);
     var promise = new $.Deferred();
     this.set('client', client);
-    
+
     var self = this;
-    client.connect().then(function() {
+
+    client.on("connected", function() {
       self.get('common').updateModList();
 
       promise.resolve();
-    });
+    })
+
+    client.connect()
 
     return promise;
   }

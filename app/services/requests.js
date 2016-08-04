@@ -17,18 +17,15 @@ export default Ember.Service.extend({
 
   allowRequests: true,
 
-  connect() {
-    var promise = this.get('connection').connect();
-
-    var self = this;
-    promise.done(function() {
-      self.connected();
-    });
+  enable() {
+    this.initialDataSetup();
+    this.setupListeners();
   },
 
-  connected() {
+  initialDataSetup() {
     this.set('all_requests', []);
-    this.setupListeners();
+    this.addMyRequest();
+    this.commandNext();
   },
 
   setupListeners() {
@@ -278,6 +275,7 @@ export default Ember.Service.extend({
   finishRequest(request) {
     request.set('isActive', false);
     request.set('isCurrent', false);
+    request.set('isHidden', true);
   },
 
   addRequest(data) {
@@ -300,8 +298,8 @@ export default Ember.Service.extend({
   addMyRequest() {
     var request = {
       user: {
-        username: this.get('connection.config.username'),
-        "display-name": this.get('connection.config.displayName')
+        username: this.get('connection.username'),
+        "display-name": this.get('connection.username')
       },
       request: "My Choice"
     };

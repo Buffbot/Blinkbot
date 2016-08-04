@@ -6,7 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     podModulePrefix: 'blinkbot/pods',
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -41,7 +41,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
   }
 
   return ENV;
