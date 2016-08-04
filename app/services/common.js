@@ -17,9 +17,9 @@ export default Ember.Service.extend({
   },
 
   updateModList() {
-    var current_user = this.get('connection.username');
     var current_channel = this.get('connection.channel_name');
-    var modsList = [current_user];
+    var channel_admin = current_channel.split("#")[1];
+    var modsList = [channel_admin];
 
     var self = this;
 
