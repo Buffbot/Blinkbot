@@ -203,6 +203,11 @@ export default Ember.Service.extend({
 
     if(this.get('allowRequests')) {
       this.addRequest(data);
+
+      var queue_spot = this.get('active_requests').length
+      var message = `Your request has been added, it is currently request #${queue_spot}.`;
+
+      this.get('common').mentionSay(user, message);
     } else {
       var message = `I am sorry, but I am not currently accepting requests.`;
 
