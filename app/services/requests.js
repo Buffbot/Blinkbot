@@ -75,6 +75,15 @@ export default Ember.Service.extend({
       return;
     }
 
+    // List Requests
+    // E.g. !list
+    // E.g. !list 2 5
+    var is_list = message.match(/!list\s?(\d+)?\s?(\d+)?/i);
+    if(is_list) {
+      this.commandList(is_list);
+      return;
+    }
+
     // ----------------
     // PRIVATE COMMANDS
     // ----------------
@@ -96,7 +105,7 @@ export default Ember.Service.extend({
       }
 
       // Stop Requests
-      // E.g. !startrequests
+      // E.g. !stoprequests
       var is_stop_requests = message.match(/!stoprequests/i);
       if(is_stop_requests) {
         this.commandStopRequests();
@@ -108,14 +117,6 @@ export default Ember.Service.extend({
       var is_start_requests = message.match(/!startrequests/i);
       if(is_start_requests) {
         this.commandStartRequests();
-        return;
-      }
-
-      // List Requests
-      // E.g. !list
-      var is_list = message.match(/!list\s?(\d+)?\s?(\d+)?/i);
-      if(is_list) {
-        this.commandList(is_list);
         return;
       }
 
