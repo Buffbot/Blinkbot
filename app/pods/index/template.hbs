@@ -9,19 +9,16 @@
   Connecting...
   {{else}}
   <div>
-  bot user:
-  {{input value=username}}
+    User: {{input value=username}} (e.g., streambot)
   </div>
 
   <div>
-  oauth:
-  {{input value=oauth}}
-  Visit http://www.twitchapps.com/tmi/
+    <div>For OAUTH, you must be logged into the user above.</div>
+    OAUTH: {{input value=oauth}} Visit http://www.twitchapps.com/tmi/
   </div>
 
   <div>
-  channel:
-  {{input value=channel}}
+  Channel: {{input value=channel}} (e.g., #ashesofowls)
   </div>
 
   <a href="#" {{action "connect"}}>Connect</a>
