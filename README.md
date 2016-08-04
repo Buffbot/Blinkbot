@@ -1,53 +1,43 @@
 # Blinkbot
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+## Getting Started
 
-## Prerequisites
+1. Download the zip package for your OS at: https://github.com/Buffbot/blinkbot/tree/master/electron-builds
 
-You will need the following things properly installed on your computer.
+2. Run Blinkbot.exe
 
-* [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+3. Follow the login instructions. Here is detailed info...
 
-## Installation
+* User: The user is whatever user the bot will act as. This can be your own user that you stream with or a bot user that you set up. This affects the OAUTH though...
+* OAUTH: OAUTH is a token you can get to authenticate yourself with twitch and have the bot send messages to your channel. When logging into twitch apps, use the above user. Copy the entire token.
+* Channel: The channel to watch over and send messages to, must be formatted like: `#channelname`
 
-* `git clone <repository-url>` this repository
-* change into the new directory
-* `npm install`
-* `bower install`
+4. I use OBS, therefore my instructions are for OBS only.
 
-## Running / Development
+* Add it as a window capture source
+* Add a filter for cropping if the top file menu is visible
+* Add a color key filter for the custom color #000000 (black)
 
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+5. Have fun!
 
-### Code Generators
+## Commands
 
-Make use of the many generators for code, try `ember help generate` for more details
+#### Public Commands
 
-### Running Tests
+`!play xyz`: Adds a request to the list
+`!playinstead`: Alter your current request
+`!cancel`: Cancels your request
+`!myrequest`: Get the status of your current request
+`!list`: Shows the list of songs
+`!list 2 5`: List accepts a range so that you can get a list of requests between a certain queue position.
 
-* `ember test`
-* `ember test --server`
 
-### Building
+#### Moderator Commands
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+* Available to ALL moderators on the channel
 
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](http://www.ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
+`!next`: Move to next request
+`!pause`: Finishes the current requests without activating the next request
+`!stoprequests`: Prevents requests from being added.
+`!startrequests`: Enables requests to be added. (Enabled by default)
+`!clear`: Clears all requests from the list
