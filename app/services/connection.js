@@ -31,6 +31,7 @@ export default Ember.Service.extend({
 
     client.on("connected", function() {
       self.get('common').updateModList();
+      self.get('common').listenForNames();
 
       promise.resolve();
     })

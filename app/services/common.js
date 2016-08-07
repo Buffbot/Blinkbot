@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   connection: Ember.inject.service('connection'),
   modsList: null,
+  usersList: null,
 
   say(message) {
     var channel = this.get('connection.channel_name');
@@ -26,6 +27,14 @@ export default Ember.Service.extend({
     this.get('connection.client').mods(current_channel).then(function(data) {
       modsList = modsList.concat(data);
       self.set('modsList', modsList);
+    });
+  },
+
+  listenForNames() {
+    var self = this;
+
+    this.get('connection.client').on('names', function(channel, users) {
+      self.set('usersList', users);
     });
   },
 
