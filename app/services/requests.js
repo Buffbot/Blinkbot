@@ -88,6 +88,17 @@ export default Ember.Service.extend({
     // PRIVATE COMMANDS
     // ----------------
     if(this.isAdmin(user)) {
+      // Inject Song
+      // E.g. !inject
+      var is_inject = message.match(/^!inject (.{2,})/i);
+      if(is_inject) {
+        this.commandInjectRequest({
+          user: user,
+          request: is_inject[1]
+        });
+        return;
+      }
+
       // Next Song
       // E.g. !next
       var is_next = message.match(/!next/i);
@@ -218,13 +229,17 @@ export default Ember.Service.extend({
       return false;
     }
 
-    if (this.getUsersRequest(user) && !this.isAdmin(user)) {
+    if (!this.userCanRequest(user)) {
       var message = `I am sorry, but you already have a request in the queue.`;
       this.get('common').mentionSay(user, message);
       return false;
     }
 
     return true;
+  },
+
+  commandInjectRequest(data) {
+    this.addRequest(data, { index: 1 });
   },
 
   commandMyRequest(user) {
@@ -299,7 +314,7 @@ export default Ember.Service.extend({
     request.set('isHidden', true);
   },
 
-  addRequest(data) {
+  addRequest(data, options={}) {
     var user = this.get('store').createRecord('twitch-user', {
       username: data.user["username"],
       display: data.user["display-name"]
@@ -313,7 +328,11 @@ export default Ember.Service.extend({
       isCurrent: false
     });
 
-    this.get('all_requests').pushObject(request);
+    if (options.index) {
+      this.get('all_requests').insertAt(options.index, request);
+    } else {
+      this.get('all_requests').pushObject(request);
+    }
   },
 
   addMyRequest() {
@@ -328,8 +347,8 @@ export default Ember.Service.extend({
     this.addRequest(request);
   },
 
-  userRequestAllowed() {
-    return true;
+  userCanRequest(user) {
+    return this.getUsersRequest(user) && !this.isAdmin(user);
   },
 
   getUsersRequest(user) {
