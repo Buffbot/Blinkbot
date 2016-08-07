@@ -24,7 +24,7 @@
 
 #### Public Commands
 
-`!play xyz`: Adds a request to the list
+`!play yyz`: Adds a request to the list
 `!playinstead`: Alter your current request
 `!cancel`: Cancels your request
 `!myrequest`: Get the status of your current request
@@ -36,6 +36,7 @@
 
 * Available to ALL moderators on the channel
 
+`!inject yyz`: Adds a request immediately after the current song.
 `!next`: Move to next request
 `!pause`: Finishes the current requests without activating the next request
 `!stoprequests`: Prevents requests from being added.
