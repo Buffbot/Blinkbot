@@ -299,13 +299,23 @@ export default Ember.Service.extend({
   },
 
   setCurrentRequest(request) {
+    var user = request.user;
+
     request.set('isCurrent', true);
 
     var message = `
       your request for "${request.get('request')}" is going to be played next!
     `;
 
-    this.get('common').mentionSay(request.user, message);
+    this.get('common').mentionSay(user, message);
+
+    if (!this.userInChannel(user)) {
+      var message = `
+        is not currently in the channel!
+      `;
+
+      this.get('common').mentionSay(user, message);
+    }
   },
 
   finishRequest(request) {
@@ -348,7 +358,14 @@ export default Ember.Service.extend({
   },
 
   userCanRequest(user) {
-    return this.getUsersRequest(user) && !this.isAdmin(user);
+    return !this.getUsersRequest(user) ||
+        this.isAdmin(user);
+  },
+
+  userInChannel(user) {
+    var users = this.get('common.usersList');
+    var username = user.get('username');
+    return users.indexOf(username) >= 0;
   },
 
   getUsersRequest(user) {
