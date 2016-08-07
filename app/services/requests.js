@@ -201,18 +201,30 @@ export default Ember.Service.extend({
   commandRequest(data) {
     var user = data.user;
 
-    if(this.get('allowRequests')) {
-      this.addRequest(data);
+    if(!this.canRequest(user)) { return false; }
 
-      var queue_spot = this.get('active_requests').length
-      var message = `Your request has been added, it is currently request #${queue_spot}.`;
+    this.addRequest(data);
 
-      this.get('common').mentionSay(user, message);
-    } else {
+    var queue_spot = this.get('active_requests').length
+
+    var message = `Your request has been added, it is currently request #${queue_spot}.`;
+    this.get('common').mentionSay(user, message);
+  },
+
+  canRequest(user) {
+    if (!this.get('allowRequests')) {
       var message = `I am sorry, but I am not currently accepting requests.`;
-
       this.get('common').mentionSay(user, message);
+      return false;
     }
+
+    if (this.getUsersRequest(user) && !this.isAdmin(user)) {
+      var message = `I am sorry, but you already have a request in the queue.`;
+      this.get('common').mentionSay(user, message);
+      return false;
+    }
+
+    return true;
   },
 
   commandMyRequest(user) {
@@ -240,6 +252,9 @@ export default Ember.Service.extend({
     var request = this.getUsersRequest(user);
 
     this.get('all_requests').removeObject(request);
+
+    var message = `Your request has successfully been removed.`;
+    this.get('common').mentionSay(user, message);
   },
 
   commandNext() {
