@@ -223,6 +223,8 @@ export default Ember.Service.extend({
   },
 
   canRequest(user) {
+    if (this.isAdmin(user)) { return true; }
+
     if (!this.get('allowRequests')) {
       var message = `I am sorry, but I am not currently accepting requests.`;
       this.get('common').mentionSay(user, message);
@@ -309,13 +311,13 @@ export default Ember.Service.extend({
 
     this.get('common').mentionSay(user, message);
 
-    if (!this.userInChannel(user)) {
-      var message = `
-        is not currently in the channel!
-      `;
-
-      this.get('common').mentionSay(user, message);
-    }
+    // if (!this.userInChannel(user)) {
+    //   var message = `
+    //     is not currently in the channel!
+    //   `;
+    //
+    //   this.get('common').mentionSay(user, message);
+    // }
   },
 
   finishRequest(request) {
